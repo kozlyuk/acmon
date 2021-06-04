@@ -71,6 +71,7 @@ class Car(UUIDModel):
 
     # Relationships
     model = models.ForeignKey(Model, on_delete=models.PROTECT, verbose_name='Model')
+    department = models.ForeignKey("car.Department", on_delete=models.CASCADE, verbose_name=_('Department'))
 
     # Fields
     sim_imei = models.CharField(_('Tracker IMEI'), max_length=30)
