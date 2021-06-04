@@ -3,9 +3,8 @@ from django.contrib.auth.admin import UserAdmin
 
 from django import forms
 
-from django.contrib.auth.models import User
 from apps.accounts.forms import CustomUserCreationForm, CustomUserChangeForm
-# from apps.accounts.models import User, Driver, Operator
+from apps.accounts.models import User
 
 
 class UserAdmin(UserAdmin):

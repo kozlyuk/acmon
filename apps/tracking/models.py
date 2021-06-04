@@ -26,6 +26,7 @@ class Record(UUIDModel):
 
     # Relationships
     car = models.ForeignKey("car.Car", on_delete=models.CASCADE, verbose_name=_('Car'))
+    department = models.ForeignKey("car.Department", on_delete=models.CASCADE, verbose_name=_('Department'))
 
     # Fields
     timestamp = models.DateTimeField('Timestamp')

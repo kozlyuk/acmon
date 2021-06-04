@@ -18,5 +18,5 @@ class RecordAdmin(admin.ModelAdmin):
     ]
 
 
-# admin.site.register(models.Trip, TripAdmin)
+admin.site.register(models.Trip, TripAdmin)
 admin.site.register(models.Record, RecordAdmin)

@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'colorfield',
     'apps.accounts',
     'apps.tracking',
     'apps.car',

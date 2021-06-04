@@ -57,6 +57,7 @@ class Model(UUIDModel):
 
     # Fields
     name = models.CharField(_('Name'), max_length=30)
+    year_of_production = models.PositiveSmallIntegerField('Year of production', blank=True, null=True)
 
     class Meta:
         verbose_name = _('Model')
@@ -83,4 +84,4 @@ class Car(UUIDModel):
         verbose_name_plural = _('Cars')
 
     def __str__(self):
-        return str(self.car_number)
+        return str(self.number)
