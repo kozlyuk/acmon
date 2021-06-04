@@ -36,7 +36,7 @@ class CustomUserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, password):
+    def create_superuser(self, email, first_name, last_name, password):
         """
         Create and save a SuperUser with the given mobile_number, email and password.
         """
@@ -45,6 +45,8 @@ class CustomUserManager(BaseUserManager):
         user = self.create_user(
             # mobile_number=mobile_number,
             email=email,
+            first_name=first_name,
+            last_name=last_name,
             password=password,
             is_active=True
         )

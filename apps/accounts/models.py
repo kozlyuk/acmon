@@ -27,14 +27,14 @@ class User(AbstractUser):
 
     username = None
     email = models.EmailField(_('Email address'), unique=True)
-    mobile_number = models.CharField(_('Mobile number'), max_length=10, validators=[phone_regex], unique=True)
+    mobile_number = models.CharField(_('Mobile number'), max_length=10, validators=[phone_regex], blank=True, null=True)
     lang = models.CharField(_('Interface language'), max_length=2, choices=LANG_CHOICES, default='uk')
     birth_date = models.DateField(_('Birth date'), null=True, blank=True)
     avatar = models.ImageField(_('Photo'), upload_to=avatar_directory_path, default='avatars/no_image.jpg', blank=True)
     is_registered = models.BooleanField(_('Registered'), default=False)
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = ['first_name', 'last_name']
 
     objects = CustomUserManager()
 
