@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.validators import MaxValueValidator
 from django.utils.translation import ugettext_lazy as _
+from django.conf import settings
 
 from acmon.uuid_models import UUIDModel
 
@@ -9,6 +10,8 @@ class Trip(UUIDModel):
 
     # Relationships
     car = models.ForeignKey("car.Car", on_delete=models.CASCADE, verbose_name=_('Car'))
+    driver = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('Driver'),
+                               blank=True, null=True, on_delete=models.SET_NULL)
 
     # Fields
     start_time = models.DateTimeField(_('Start time'))
