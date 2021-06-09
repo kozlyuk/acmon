@@ -5,10 +5,10 @@ from . import api
 
 
 router = routers.DefaultRouter()
-router.register("Contact", api.ContactViewSet)
+router.register("contact", api.ContactViewSet)
 # router.register("Operator", api.OperatorViewSet)
 # router.register("Driver", api.DriverViewSet)
 
 urlpatterns = (
-    path("api/v1/", include(router.urls)),
+    path("api/", include(router.urls)),
 )

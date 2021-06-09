@@ -12,6 +12,7 @@ class BrandAdmin(admin.ModelAdmin):
 class CarAdmin(admin.ModelAdmin):
     list_display = [
         "number",
+        "sim_number",
         "sim_imei",
     ]
 

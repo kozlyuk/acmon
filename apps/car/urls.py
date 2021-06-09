@@ -5,12 +5,12 @@ from . import api
 
 
 router = routers.DefaultRouter()
-router.register("Brand", api.BrandViewSet)
-router.register("Car", api.CarViewSet)
-router.register("Company", api.CompanyViewSet)
-router.register("Department", api.DepartmentViewSet)
-router.register("Model", api.ModelViewSet)
+router.register("brand", api.BrandViewSet)
+router.register("car", api.CarViewSet)
+router.register("company", api.CompanyViewSet)
+router.register("department", api.DepartmentViewSet)
+router.register("model", api.ModelViewSet)
 
 urlpatterns = (
-    path("api/v1/", include(router.urls)),
+    path("api/", include(router.urls)),
 )

@@ -64,7 +64,7 @@ class Model(UUIDModel):
         verbose_name_plural = _('Models')
 
     def __str__(self):
-        return str(self.name)
+        return f'{self.name} {self.year_of_production}'
 
 
 class Car(UUIDModel):
