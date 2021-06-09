@@ -8,8 +8,13 @@ class TripSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Trip
         fields = [
-            "last_updated",
-            "created",
+            "id",
+            "car",
+            "driver",
+            "start_time",
+            "finsh_time",
+            "updated_at",
+            "created_at",
         ]
 
 
@@ -18,6 +23,16 @@ class RecordSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Record
         fields = [
-            "created",
-            "last_updated",
+            "id",
+            "car",
+            "timestamp",
+            "priority",
+            "longitude",
+            "latitude",
+            "altitude",
+            "angle",
+            "satellites",
+            "speed",
+            "updated_at",
+            "created_at",
         ]

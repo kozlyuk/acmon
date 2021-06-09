@@ -8,9 +8,11 @@ class BrandSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Brand
         fields = [
+            "id",
             "name",
             "last_updated",
-            "created",
+            "updated_at",
+            "created_at",
         ]
 
 class CarSerializer(serializers.ModelSerializer):
@@ -18,8 +20,16 @@ class CarSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Car
         fields = [
-            "last_updated",
-            "created",
+            "id",
+            "model",
+            "department",
+            "sim_imei",
+            "sim_number",
+            "number",
+            "color",
+            "is_active",
+            "updated_at",
+            "created_at",
         ]
 
 class CompanySerializer(serializers.ModelSerializer):
@@ -27,12 +37,13 @@ class CompanySerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Company
         fields = [
-            "last_updated",
-            "contact_person",
-            "billing_email",
-            "created",
-            "contact_phone",
+            "id",
             "name",
+            "contact_person",
+            "contact_phone",
+            "email",
+            "updated_at",
+            "created_at",
         ]
 
 class DepartmentSerializer(serializers.ModelSerializer):
@@ -40,9 +51,11 @@ class DepartmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Department
         fields = [
-            "created",
+            "id",
+            "company",
             "name",
-            "last_updated",
+            "updated_at",
+            "created_at",
         ]
 
 class ModelSerializer(serializers.ModelSerializer):
@@ -50,7 +63,10 @@ class ModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Model
         fields = [
+            "id",
+            "brand",
             "name",
-            "last_updated",
-            "created",
+            "year_of_production",
+            "updated_at",
+            "created_at",
         ]
