@@ -155,7 +155,7 @@ REST_FRAMEWORK = {
 # Here, we add two social authentication methods _above_ the default ModelBackend.
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.google.GoogleOAuth2',
-    # 'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.facebook.FacebookOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
 
@@ -166,9 +166,8 @@ AUTHENTICATION_BACKENDS = (
 # even if the application doesn't participate in the OAuth2 process.
 for key in ['GOOGLE_OAUTH2_KEY',
             'GOOGLE_OAUTH2_SECRET',
-            # 'FACEBOOK_KEY',
-            # 'FACEBOOK_SECRET'
-            ]:
+            'FACEBOOK_KEY',
+            'FACEBOOK_SECRET']:
     exec("SOCIAL_AUTH_{key} = os.environ.get('{key}', '')".format(key=key))
 
 # We need to set at least the following scopes, to ensure that we can read
@@ -178,15 +177,15 @@ for key in ['GOOGLE_OAUTH2_KEY',
 # _frontend_ needs to be sure to send at least these scopes in order for the
 # tokens to have enough permissions to get the user model updates / matching
 # working properly.
-# SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
-SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['email', 'profile']
+SOCIAL_AUTH_FACEBOOK_SCOPE = os.environ.get("SOCIAL_AUTH_FACEBOOK_SCOPE").split(" ")
+SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = os.environ.get("SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE").split(" ")
 
 # config per http://psa.matiasaguirre.net/docs/configuration/django.html#django-admin
-SOCIAL_AUTH_ADMIN_USER_SEARCH_FIELDS = ['first_name', 'email']
+SOCIAL_AUTH_ADMIN_USER_SEARCH_FIELDS = ['last_name', 'first_name', 'email']
 
 # If this is not set, PSA constructs a plausible username from the first portion of the
 # user email, plus some random disambiguation characters if necessary.
-SOCIAL_AUTH_USERNAME_IS_FULL_EMAIL = True
+SOCIAL_AUTH_USERNAME_IS_FULL_EMAIL = os.environ.get("SOCIAL_AUTH_USERNAME_IS_FULL_EMAIL") == 'TRUE'
 
 # define a custom social auth pipeline.
 # The key thing here is to include email association. Both FB and Google
