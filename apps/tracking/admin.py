@@ -15,6 +15,7 @@ class RecordAdmin(admin.ModelAdmin):
     list_display = [
         "timestamp",
         "car",
+        "event_id"
     ]
 
 

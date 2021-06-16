@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
 from . import models
+from apps.tracking.models import Record
 from apps.tracking.serializers import RecordSerializer
 
 
@@ -37,7 +38,10 @@ class CarSerializer(serializers.ModelSerializer):
         ]
 
     def get_last_position(self, obj):
-        return RecordSerializer(obj.record_set.latest()).data
+        try:
+            return RecordSerializer(obj.record_set.latest()).data
+        except Record.DoesNotExist:
+            return None
 
 
 class CompanySerializer(serializers.ModelSerializer):
