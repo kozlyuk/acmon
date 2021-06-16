@@ -41,7 +41,6 @@ class Record(UUIDModel):
     speed = models.PositiveSmallIntegerField('Speed', default=0)
     event_id = models.PositiveSmallIntegerField('Event ID', default=0)
     io_elements = models.JSONField('IO Elements', default=list)
-    request_data = models.BinaryField('Request data', blank=True, null=True)
 
     class Meta:
         verbose_name = _('Record')
