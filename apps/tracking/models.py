@@ -36,9 +36,11 @@ class Record(UUIDModel):
     longitude = models.PositiveIntegerField('Longitude', validators=[MaxValueValidator(900000000)])
     latitude = models.PositiveIntegerField('Latitude', validators=[MaxValueValidator(900000000)])
     altitude = models.PositiveSmallIntegerField('Altitude')
-    angle = models.PositiveIntegerField('Angle', default=0, validators=[MaxValueValidator(360)])
-    satellites = models.PositiveSmallIntegerField('Satelites')
+    angle = models.PositiveSmallIntegerField('Angle', default=0, validators=[MaxValueValidator(360)])
+    satellites = models.PositiveSmallIntegerField('Satelites', default=0)
     speed = models.PositiveSmallIntegerField('Speed', default=0)
+    event_id = models.PositiveSmallIntegerField('Event ID', default=0)
+    io_elements = models.JSONField('IO Elements', default=list)
     request_data = models.BinaryField('Request data', blank=True, null=True)
 
     class Meta:
