@@ -35,4 +35,6 @@ class RecordSerializer(serializers.ModelSerializer):
             "speed",
             "updated_at",
             "created_at",
+            "event_id",
+            "io_elements"
         ]

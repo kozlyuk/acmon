@@ -40,11 +40,12 @@ class Record(UUIDModel):
     satellites = models.PositiveSmallIntegerField('Satelites', default=0)
     speed = models.PositiveSmallIntegerField('Speed', default=0)
     event_id = models.PositiveSmallIntegerField('Event ID', default=0)
-    io_elements = models.JSONField('IO Elements', default=list)
+    io_elements = models.JSONField('IO Elements', default=dict, blank=True, null=True)
 
     class Meta:
         verbose_name = _('Record')
         verbose_name_plural = _('Records')
+        get_latest_by = 'timestamp'
 
     def __str__(self):
         return str(self.timestamp)

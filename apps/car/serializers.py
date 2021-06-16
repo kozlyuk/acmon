@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
 from . import models
+from apps.tracking.serializers import RecordSerializer
 
 
 class BrandSerializer(serializers.ModelSerializer):
@@ -17,6 +18,8 @@ class BrandSerializer(serializers.ModelSerializer):
 
 class CarSerializer(serializers.ModelSerializer):
 
+    last_position = serializers.SerializerMethodField()
+
     class Meta:
         model = models.Car
         fields = [
@@ -30,7 +33,12 @@ class CarSerializer(serializers.ModelSerializer):
             "is_active",
             "updated_at",
             "created_at",
+            "last_position",
         ]
+
+    def get_last_position(self, obj):
+        return RecordSerializer(obj.record_set.latest()).data
+
 
 class CompanySerializer(serializers.ModelSerializer):
 
