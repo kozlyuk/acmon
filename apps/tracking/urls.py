@@ -5,8 +5,8 @@ from . import api
 
 
 router = routers.DefaultRouter()
-router.register("trip", api.TripViewSet)
-router.register("record", api.RecordViewSet)
+router.register("trip", api.TripViewSet, basename='Trip')
+router.register("record", api.RecordViewSet, basename='Record')
 
 urlpatterns = (
     path("api/", include(router.urls)),
