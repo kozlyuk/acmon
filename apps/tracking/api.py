@@ -14,8 +14,12 @@ class TripViewSet(viewsets.ModelViewSet):
 
 
 class RecordViewSet(viewsets.ModelViewSet):
-    """ViewSet for the Record class"""
-
+    """ViewSet for the Record class
+    Filter queryset by car_id field ('car_id' get parameters list)
+    Filter queryset by start_time field ('start_time' get parameter)
+    Filter queryset by end_time field ('end_time' get parameter)
+    Order queryset by any given field ('order' get parameter)
+    """
     serializer_class = serializers.RecordSerializer
     permission_classes = [permissions.IsAuthenticated]
 
@@ -37,6 +41,7 @@ class RecordViewSet(viewsets.ModelViewSet):
             queryset = qs_union
         queryset = queryset.filter(timestamp__gte=start_time,
                                    timestamp__lte=end_time)
+        # ordering queryset
         if order:
             queryset = queryset.order_by(order)
 

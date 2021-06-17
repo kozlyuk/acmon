@@ -13,11 +13,31 @@ class BrandViewSet(viewsets.ModelViewSet):
 
 
 class CarViewSet(viewsets.ModelViewSet):
-    """ViewSet for the Car class"""
-
-    queryset = models.Car.objects.all()
+    """ViewSet for the Car class
+    Filter queryset by car_id field ('car_id' get parameters list)
+    Order queryset by any given field ('order' get parameter)
+    """
     serializer_class = serializers.CarSerializer
     permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        # get filtered payments
+        queryset = models.Car.objects.all()
+        # get parameters from request
+        car_ids = self.request.GET.getlist('car_id')
+        order = self.request.GET.get('order')
+        # filtering queryset
+        if car_ids:
+            qs_union = models.Car.objects.none()
+            for car in car_ids:
+                qs_segment = queryset.filter(id=car)
+                qs_union = qs_union | qs_segment
+            queryset = qs_union
+        # ordering queryset
+        if order:
+            queryset = queryset.order_by(order)
+
+        return queryset
 
 
 class CompanyViewSet(viewsets.ModelViewSet):
