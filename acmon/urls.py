@@ -25,5 +25,6 @@ urlpatterns = [
     path('car/', include('apps.car.urls')),
     path('admin/', admin.site.urls),
 
+    path('rest-auth/', include('rest_auth.urls')),
     re_path(r'social/(?P<backend>[^/]+)/$', exchange_token),
 ]

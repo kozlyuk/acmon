@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     # 'django_extensions',
     'rest_framework',
     'rest_framework.authtoken',
+    'rest_auth',
     'social_django',  # python social auth
     'colorfield',
     'corsheaders',
