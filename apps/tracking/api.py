@@ -1,5 +1,5 @@
 from datetime import datetime
-from rest_framework import viewsets, permissions
+from rest_framework import viewsets, permissions, pagination
 
 from . import serializers
 from . import models
@@ -22,6 +22,7 @@ class RecordViewSet(viewsets.ModelViewSet):
     """
     serializer_class = serializers.RecordSerializer
     permission_classes = [permissions.IsAuthenticated]
+    viewsets.ModelViewSet.pagination_class.default_limit = 100000
 
     def get_queryset(self):
         # get filtered payments

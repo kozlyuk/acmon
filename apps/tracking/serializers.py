@@ -1,9 +1,11 @@
 from rest_framework import serializers
 
+from drf_dynamic_fields import DynamicFieldsMixin
+
 from . import models
 
 
-class TripSerializer(serializers.ModelSerializer):
+class TripSerializer(DynamicFieldsMixin, serializers.ModelSerializer):
 
     class Meta:
         model = models.Trip
@@ -18,7 +20,7 @@ class TripSerializer(serializers.ModelSerializer):
         ]
 
 
-class RecordSerializer(serializers.ModelSerializer):
+class RecordSerializer(DynamicFieldsMixin, serializers.ModelSerializer):
 
     class Meta:
         model = models.Record
