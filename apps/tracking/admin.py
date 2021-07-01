@@ -15,7 +15,10 @@ class RecordAdmin(admin.ModelAdmin):
     list_display = [
         "timestamp",
         "car",
-        "event_id"
+        "event_id",
+        "longitude",
+        "latitude",
+        "is_parked",
     ]
 
 

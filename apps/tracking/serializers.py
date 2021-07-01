@@ -38,5 +38,6 @@ class RecordSerializer(DynamicFieldsMixin, serializers.ModelSerializer):
             "updated_at",
             "created_at",
             "event_id",
-            "io_elements"
+            "io_elements",
+            "is_parked",
         ]

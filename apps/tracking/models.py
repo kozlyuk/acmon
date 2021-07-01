@@ -41,6 +41,7 @@ class Record(UUIDModel):
     speed = models.PositiveSmallIntegerField('Speed', default=0)
     event_id = models.PositiveSmallIntegerField('Event ID', default=0)
     io_elements = models.JSONField('IO Elements', default=dict, blank=True, null=True)
+    is_parked = models.BooleanField(_('Is parked'), default=False)
 
     class Meta:
         verbose_name = _('Record')
@@ -49,3 +50,10 @@ class Record(UUIDModel):
 
     def __str__(self):
         return str(self.timestamp)
+
+    def set_is_parked(self):
+        is_ignition_on = self.io_elements.get('239', True)
+        is_movement = self.io_elements.get('240', True)
+        if not is_ignition_on and not is_movement:
+            self.is_parked = True
+            self.save()
