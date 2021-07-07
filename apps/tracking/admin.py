@@ -20,6 +20,7 @@ class RecordAdmin(admin.ModelAdmin):
         "latitude",
         "is_parked",
     ]
+    list_filter = ('car__number', 'is_parked', 'event_id', 'priority',)
 
 
 admin.site.register(models.Trip, TripAdmin)

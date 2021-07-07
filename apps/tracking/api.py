@@ -22,7 +22,7 @@ class RecordViewSet(viewsets.ModelViewSet):
     """
     serializer_class = serializers.RecordSerializer
     permission_classes = [permissions.IsAuthenticated]
-    viewsets.ModelViewSet.pagination_class.default_limit = 100000
+    viewsets.ModelViewSet.pagination_class.default_limit = 10000
 
     def get_queryset(self):
         # get filtered payments
@@ -45,5 +45,7 @@ class RecordViewSet(viewsets.ModelViewSet):
         # ordering queryset
         if order:
             queryset = queryset.order_by(order)
+        else:
+            queryset = queryset.order_by('timestamp')
 
         return queryset

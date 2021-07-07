@@ -1,0 +1,20 @@
+from apps.tracking.models import Record
+
+for rec in Record.objects.all():
+    if rec.io_elements == []:
+        rec.io_elements = {}
+        rec.save()
+
+
+for rec in Record.objects.all():
+    rec.set_is_parked()
+
+
+parked = False
+for rec in Record.objects.filter(car='7991858c-3a7c-4752-bb37-eae7c0370908').order_by('timestamp'):
+    if rec.is_parked and parked and not rec.event_id:
+        rec.delete()
+    elif rec.is_parked:
+        parked = True
+    else:
+        parked = False
