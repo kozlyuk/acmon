@@ -135,6 +135,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = '/home/app/static/'
+MEDIA_ROOT = '/home/app/media/'
 
 # CORS settings
 CORS_ORIGIN_ALLOW_ALL = os.environ.get("CORS_ORIGIN_ALLOW_ALL") == 'TRUE'

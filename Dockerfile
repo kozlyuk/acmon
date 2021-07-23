@@ -40,10 +40,10 @@ RUN apk add --update \
   tk-dev \
   zlib-dev
 
-# Install dependencies
+# install dependencies
 COPY ./requirements.txt .
-RUN pip install --upgrade pip
 RUN pip wheel --no-cache-dir --no-deps --wheel-dir /usr/src/app/wheels -r requirements.txt
+
 
 #########
 # FINAL #
@@ -53,20 +53,26 @@ RUN pip wheel --no-cache-dir --no-deps --wheel-dir /usr/src/app/wheels -r requir
 FROM python:3.8-alpine
 
 # create directory for the app user
-ENV APP_HOME=/home/app
-RUN mkdir -p $APP_HOME
-WORKDIR $APP_HOME
+RUN mkdir -p /home/app
 
 # create the app user
 RUN addgroup -S app && adduser -S app -G app
 
+# create the appropriate directories
+ENV HOME=/home/app
+ENV APP_HOME=/home/app
+RUN mkdir $APP_HOME/static
+RUN mkdir $APP_HOME/media
+WORKDIR $APP_HOME
+
 # install dependencies
-RUN apk update && apk add libpq libjpeg
+RUN apk update && apk add libpq   # jpeg-dev zlib-dev libjpeg
 COPY --from=builder /usr/src/app/wheels /wheels
 COPY --from=builder /usr/src/app/requirements.txt .
-RUN pip install --upgrade pip
 RUN pip install --no-cache /wheels/*
-RUN rm -rf /wheels
+
+# copy entrypoint.sh
+COPY ./entrypoint.sh $APP_HOME
 
 # copy project
 COPY . $APP_HOME
@@ -76,6 +82,3 @@ RUN chown -R app:app $APP_HOME
 
 # change to the app user
 USER app
-
-# run entrypoint.prod.sh
-# ENTRYPOINT ["/home/app/entrypoint.sh"]

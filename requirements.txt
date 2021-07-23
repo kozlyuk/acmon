@@ -13,7 +13,6 @@ djangorestframework==3.12.4
 drf-dynamic-fields==0.3.1
 idna==2.10
 oauthlib==3.1.1
-Pillow==8.2.0
 psycopg2-binary==2.8.6
 pycparser==2.20
 PyJWT==2.1.0
@@ -26,3 +25,6 @@ social-auth-app-django==4.0.0
 social-auth-core==4.1.0
 sqlparse==0.4.1
 urllib3==1.26.5
+
+# Deployment
+gunicorn==20.1.0
