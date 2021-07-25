@@ -66,7 +66,8 @@ RUN mkdir $APP_HOME/media
 WORKDIR $APP_HOME
 
 # install dependencies
-RUN apk update && apk add libpq   # jpeg-dev zlib-dev libjpeg
+RUN apk update && apk add libpq tzdata
+# jpeg-dev zlib-dev libjpeg
 COPY --from=builder /usr/src/app/wheels /wheels
 COPY --from=builder /usr/src/app/requirements.txt .
 RUN pip install --no-cache /wheels/*
