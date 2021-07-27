@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'apps.accounts',
     'apps.tracking',
     'apps.car',
+    'apps.messaging',
 ]
 
 MIDDLEWARE = [
@@ -222,3 +223,20 @@ SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.social_auth.load_extra_data',
     'social_core.pipeline.user.user_details',
 )
+
+# Email related settings
+EMAIL_ENABLED = os.environ.get("EMAIL_ENABLED") == 'TRUE'
+EMAIL_USE_TLS = os.environ.get("EMAIL_USE_TLS") == 'TRUE'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = os.environ.get("EMAIL_HOST")
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
+EMAIL_PORT = os.environ.get("EMAIL_PORT")
+DEFAULT_FROM_EMAIL = os.environ.get("DEFAULT_FROM_EMAIL")
+
+# SMS related settings
+SMS_ENABLED = os.environ.get("SMS_ENABLED") == 'TRUE'
+SMS_SERVER_URL = os.environ.get("SMS_SERVER_URL")
+SMS_TOKEN = os.environ.get("SMS_TOKEN")
+SMS_SENDER = os.environ.get("SMS_SENDER")
+OTP_SECRET = os.environ.get("OTP_SECRET")

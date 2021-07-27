@@ -12,37 +12,14 @@ services:
 #       - "6379:6379"
 #     network_mode: host
 
-############
-# FRONTEND #
-############
-
-#   nginx:
-#     restart: always
-#     image: "nginx:1"
-#     container_name: endlessproject_nginx_1
-#     ports:
-#       - "80:80"
-#       - "443:443"
-#     env_file:
-#       - ./.env_defaults
-#       - ./.env
-#     volumes:
-#       - /home/ubuntu/endless_project/var/www/static/:/app/static/
-#       - /home/ubuntu/endless_project/var/www/media:/app/media/
-#       - /home/ubuntu/endless_project/webui-app/dist/:/app/webui/
-#       - /home/ubuntu/endless_project/conf/docker/nginx.conf:/etc/nginx/conf.d/default.conf
-#       - /etc/letsencrypt:/etc/letsencrypt
-#     network_mode: host
-
 ###########
 # BACKEND #
 ###########
 
   acmon_back:
     restart: always
-    build: .
-    image: acmon_back
-    # image: &img kozlyuk/acmon:acmon_back_latest
+    # build: .
+    image: &img kozlyuk/acmon:acmon_back_latest
     container_name: acmon_back
     ports:
       - "8000:8000"
@@ -70,6 +47,23 @@ services:
     network_mode: host
     env_file:
       - .env
+
+############
+# FRONTEND #
+############
+
+  acmon_front:
+    image: kozlyuk/acmon:acmon_front_latest
+    command: ['npm', 'start']
+    # command: [nginx, '-g', 'daemon off;']
+    container_name: acmon_front
+    ports:
+      - 3000:3000
+    network_mode: host
+    volumes:
+      - ./.env_front:/app/.env
+    depends_on:
+      - acmon_back
 
 ##########
 # CELERY #

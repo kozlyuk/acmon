@@ -43,26 +43,3 @@ class User(AbstractUser):
 
     def __str__(self):
         return f"{self.last_name} {self.first_name}"
-
-
-# class Operator(models.Model):
-
-#     user = models.OneToOneField(User, verbose_name=_('System user'), on_delete=models.CASCADE)
-
-#     class Meta:
-#         pass
-
-#     def __str__(self):
-#         return f"{self.last_name} {self.first_name}"
-
-
-# class Driver(models.Model):
-
-#     # Relationships
-#     user = models.OneToOneField(User, verbose_name=_('System user'), on_delete=models.CASCADE)
-
-#     class Meta:
-#         pass
-
-#     def __str__(self):
-#         return f"{self.last_name} {self.first_name}"

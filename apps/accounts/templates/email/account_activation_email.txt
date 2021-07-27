@@ -1,0 +1,5 @@
+{% autoescape off %}
+Вітаю {{ first_name }}!,
+Натисніть будь ласка на посилання для підтвердження реєстрації,
+{{ account_activation_url }}
+{% endautoescape %}
