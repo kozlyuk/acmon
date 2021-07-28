@@ -223,6 +223,7 @@ SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.social_auth.load_extra_data',
     'social_core.pipeline.user.user_details',
 )
+SOCIAL_AUTH_INACTIVE_USER_URL = '/inactive-user/'
 
 # Email related settings
 EMAIL_ENABLED = os.environ.get("EMAIL_ENABLED") == 'TRUE'

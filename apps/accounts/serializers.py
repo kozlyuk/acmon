@@ -34,6 +34,7 @@ class UserSerializer(serializers.ModelSerializer):
         # creating user and adding it to groups
         if 'password' in validated_data:
             validated_data['password'] = make_password(validated_data['password'])
+        validated_data['is_active'] = False
         user = models.User.objects.create(**validated_data)
         return user
 
