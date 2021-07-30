@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from drf_dynamic_fields import DynamicFieldsMixin
 
 from . import models
 from apps.tracking.models import Record
@@ -17,7 +18,7 @@ class BrandSerializer(serializers.ModelSerializer):
             "created_at",
         ]
 
-class CarSerializer(serializers.ModelSerializer):
+class CarSerializer(DynamicFieldsMixin, serializers.ModelSerializer):
 
     last_position = serializers.SerializerMethodField()
 

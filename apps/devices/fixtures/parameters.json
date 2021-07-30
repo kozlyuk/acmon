@@ -9,9 +9,9 @@
         "type": "Unsigned",
         "min_value": 0,
         "max_value": 2147483647,
-        "multiplier": null,
-        "units": "м",
-        "description": "Загальний пробіг в метрах",
+        "multiplier": "0.001",
+        "units": "км",
+        "description": "Загальний пробіг в кілометрах",
         "hw_support": "FMBXXX FMB001\r\nFMB010\r\nFMB110\r\nFMB120\r\nFMB122\r\nFMB125\r\nFMU125\r\nFMB140\r\nFMB900\r\nFMB920\r\nFMB962\r\nFMB964\r\nFM3001\r\nFMB202\r\nFMB204\r\nFMB206\r\nFMT100\r\nMTB100",
         "group": "Permanent I/O elements"
     }
@@ -140,14 +140,14 @@
     "pk": 9,
     "fields": {
         "code": 87,
-        "name": "Загальний пробіг по одоментру",
+        "name": "Загальний пробіг по одометру",
         "bytes": 4,
         "type": "Unsigned",
         "min_value": 0,
         "max_value": 2147483647,
-        "multiplier": null,
-        "units": "м",
-        "description": "Значення в метрах",
+        "multiplier": "0.001",
+        "units": "км",
+        "description": "Загальний пробіг в кілометрах",
         "hw_support": "FMBXXX FMB110\r\nFMB120\r\nFMB122\r\nFMB125\r\nFMU125\r\nFMC125\r\nFMM125\r\nFMB130\r\nFMU130\r\nFMC130\r\nFMM130\r\nFMB140",
         "group": "LVCAN200, ALLCAN300, CANCONTROL"
     }
@@ -162,8 +162,8 @@
         "type": "Unsigned",
         "min_value": 0,
         "max_value": 2147483647,
-        "multiplier": null,
-        "units": "м",
+        "multiplier": "0.001",
+        "units": "км",
         "description": "Загальний пробіг (обрахований)",
         "hw_support": "FMBXXX FMB110\r\nFMB120\r\nFMB122\r\nFMB125\r\nFMU125\r\nFMC125\r\nFMM125\r\nFMB130\r\nFMU130\r\nFMC130\r\nFMM130\r\nFMB140",
         "group": "LVCAN200, ALLCAN300, CANCONTROL"
