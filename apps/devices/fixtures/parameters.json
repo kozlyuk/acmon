@@ -1,0 +1,308 @@
+[
+{
+    "model": "devices.parameter",
+    "pk": 1,
+    "fields": {
+        "code": 16,
+        "name": "Загальний пробіг",
+        "bytes": 4,
+        "type": "Unsigned",
+        "min_value": 0,
+        "max_value": 2147483647,
+        "multiplier": null,
+        "units": "м",
+        "description": "Загальний пробіг в метрах",
+        "hw_support": "FMBXXX FMB001\r\nFMB010\r\nFMB110\r\nFMB120\r\nFMB122\r\nFMB125\r\nFMU125\r\nFMB140\r\nFMB900\r\nFMB920\r\nFMB962\r\nFMB964\r\nFM3001\r\nFMB202\r\nFMB204\r\nFMB206\r\nFMT100\r\nMTB100",
+        "group": "Permanent I/O elements"
+    }
+},
+{
+    "model": "devices.parameter",
+    "pk": 2,
+    "fields": {
+        "code": 21,
+        "name": "Сигнал GSM",
+        "bytes": 1,
+        "type": "Unsigned",
+        "min_value": 0,
+        "max_value": 5,
+        "multiplier": null,
+        "units": null,
+        "description": "Значення в діапазоні 1-5",
+        "hw_support": "FMBXXX FMB001\r\nFMB010\r\nFMB110\r\nFMB120\r\nFMB122\r\nFMB125\r\nFMU125\r\nFMB140\r\nFMB900\r\nFMB920\r\nFMB962\r\nFMB964\r\nFM3001\r\nFMB202\r\nFMB204\r\nFMB206\r\nFMT100\r\nMTB100",
+        "group": "Permanent I/O Elements"
+    }
+},
+{
+    "model": "devices.parameter",
+    "pk": 3,
+    "fields": {
+        "code": 66,
+        "name": "Напруга",
+        "bytes": 2,
+        "type": "Unsigned",
+        "min_value": 0,
+        "max_value": 65535,
+        "multiplier": "0.001",
+        "units": "В",
+        "description": "Напруга на вході",
+        "hw_support": "FMBXXX FMB001\r\nFMB010\r\nFMB002\r\nFMB020\r\nFMB003\r\nFMB110\r\nFMB120\r\nFMB122\r\nFMB125\r\nFMB130\r\nFMB140\r\nFMU125\r\nFMB900\r\nFMB920\r\nFMB962\r\nFMB964\r\nFM3001\r\nFMB202\r\nFMB204\r\nFMB206\r\nFMT100\r\nMTB100\r\nFMP100\r\nMSP500",
+        "group": "Permanent I/O elements"
+    }
+},
+{
+    "model": "devices.parameter",
+    "pk": 4,
+    "fields": {
+        "code": 67,
+        "name": "Напруга акумулятора",
+        "bytes": 2,
+        "type": "Unsigned",
+        "min_value": 0,
+        "max_value": 65535,
+        "multiplier": "0.001",
+        "units": "В",
+        "description": "Напруга на внутрішньому акумуляторі",
+        "hw_support": "FMBXXX FMB001\r\nFMB010\r\nFMB120\r\nFMB122\r\nFMB125\r\nFMB130\r\nFMB140\r\nFMB920\r\nFMB962\r\nFMB964\r\nFM3001\r\nFMB202\r\nFMB204\r\nFMB206\r\nFMT100\r\nMTB100",
+        "group": "Permanent I/O elements"
+    }
+},
+{
+    "model": "devices.parameter",
+    "pk": 5,
+    "fields": {
+        "code": 68,
+        "name": "Струм",
+        "bytes": 2,
+        "type": "Unsigned",
+        "min_value": 0,
+        "max_value": 65535,
+        "multiplier": "0.001",
+        "units": "А",
+        "description": "Струм споживання",
+        "hw_support": "FMBXXX FMB001\r\nFMB010\r\nFMB120\r\nFMB122\r\nFMB125\r\nFMU125\r\nFMC125\r\nFMM125\r\nFMB130\r\nFMU130\r\nFMC130\r\nFMM130\r\nFMB920\r\nFMB962\r\nFMB964\r\nFM3001\r\nFMB202\r\nFMB204\r\nFMB206\r\nFMT100\r\nMTB100\r\nFMB140",
+        "group": "Permanent I/O elements"
+    }
+},
+{
+    "model": "devices.parameter",
+    "pk": 6,
+    "fields": {
+        "code": 69,
+        "name": "Статус GNSS",
+        "bytes": 1,
+        "type": "Unsigned",
+        "min_value": 0,
+        "max_value": 3,
+        "multiplier": null,
+        "units": null,
+        "description": "0 - GNSS OFF\r\n1 – GNSS ON with fix\r\n2 - GNSS ON without fix\r\n3 - GNSS sleep",
+        "hw_support": "FMBXXX FMB001\r\nFMB010\r\nFMB110\r\nFMB120\r\nFMB122\r\nFMB125\r\nFMU125\r\nFMB140\r\nFMB900\r\nFMB920\r\nFMB962\r\nFMB964\r\nFM3001\r\nFMB202\r\nFMB204\r\nFMB206\r\nFMT100\r\nMTB100",
+        "group": "Permanent I/O elements"
+    }
+},
+{
+    "model": "devices.parameter",
+    "pk": 7,
+    "fields": {
+        "code": 81,
+        "name": "Швидкість на спідометрі",
+        "bytes": 1,
+        "type": "Unsigned",
+        "min_value": 0,
+        "max_value": 255,
+        "multiplier": null,
+        "units": "км/г",
+        "description": "Швидкість на спідометрі",
+        "hw_support": "FMBXXX FMB110\r\nFMB120\r\nFMB122\r\nFMB125\r\nFMU125\r\nFMC125\r\nFMM125\r\nFMB130\r\nFMU130\r\nFMC130\r\nFMM130\r\nFMB140",
+        "group": "LVCAN200, ALLCAN300, CANCONTROL"
+    }
+},
+{
+    "model": "devices.parameter",
+    "pk": 8,
+    "fields": {
+        "code": 82,
+        "name": "Позиція педалі газу",
+        "bytes": 1,
+        "type": "Unsigned",
+        "min_value": 0,
+        "max_value": 102,
+        "multiplier": null,
+        "units": "%",
+        "description": "Значення у відсотках",
+        "hw_support": "FMBXXX FMB110\r\nFMB120\r\nFMB122\r\nFMB125\r\nFMU125\r\nFMC125\r\nFMM125\r\nFMB130\r\nFMU130\r\nFMC130\r\nFMM130\r\nFMB140",
+        "group": "LVCAN200, ALLCAN300, CANCONTROL"
+    }
+},
+{
+    "model": "devices.parameter",
+    "pk": 9,
+    "fields": {
+        "code": 87,
+        "name": "Загальний пробіг по одоментру",
+        "bytes": 4,
+        "type": "Unsigned",
+        "min_value": 0,
+        "max_value": 2147483647,
+        "multiplier": null,
+        "units": "м",
+        "description": "Значення в метрах",
+        "hw_support": "FMBXXX FMB110\r\nFMB120\r\nFMB122\r\nFMB125\r\nFMU125\r\nFMC125\r\nFMM125\r\nFMB130\r\nFMU130\r\nFMC130\r\nFMM130\r\nFMB140",
+        "group": "LVCAN200, ALLCAN300, CANCONTROL"
+    }
+},
+{
+    "model": "devices.parameter",
+    "pk": 10,
+    "fields": {
+        "code": 105,
+        "name": "Загальний пробіг (обрахований)",
+        "bytes": 4,
+        "type": "Unsigned",
+        "min_value": 0,
+        "max_value": 2147483647,
+        "multiplier": null,
+        "units": "м",
+        "description": "Загальний пробіг (обрахований)",
+        "hw_support": "FMBXXX FMB110\r\nFMB120\r\nFMB122\r\nFMB125\r\nFMU125\r\nFMC125\r\nFMM125\r\nFMB130\r\nFMU130\r\nFMC130\r\nFMM130\r\nFMB140",
+        "group": "LVCAN200, ALLCAN300, CANCONTROL"
+    }
+},
+{
+    "model": "devices.parameter",
+    "pk": 11,
+    "fields": {
+        "code": 132,
+        "name": "Прапори стану безпеки",
+        "bytes": 8,
+        "type": "Unsigned",
+        "min_value": 0,
+        "max_value": 2147483647,
+        "multiplier": null,
+        "units": null,
+        "description": "Прапори стану безпеки",
+        "hw_support": "FMBXXX FMB110\r\nFMB120\r\nFMB122\r\nFMB125\r\nFMU125\r\nFMC125\r\nFMM125\r\nFMB130\r\nFMU130\r\nFMC130\r\nFMM130\r\nFMB140",
+        "group": "ALLCAN300, CANCONTROL"
+    }
+},
+{
+    "model": "devices.parameter",
+    "pk": 12,
+    "fields": {
+        "code": 151,
+        "name": "Рівнь заряду акумулятора",
+        "bytes": 1,
+        "type": "Unsigned",
+        "min_value": 0,
+        "max_value": 100,
+        "multiplier": null,
+        "units": "%",
+        "description": "Рівнь заряду акумулятора",
+        "hw_support": "FMBXXX FMB110\r\nFMB120\r\nFMB122\r\nFMB125\r\nFMU125\r\nFMC125\r\nFMM125\r\nFMB130\r\nFMU130\r\nFMC130\r\nFMM130",
+        "group": "ALLCAN300, CANCONTROL"
+    }
+},
+{
+    "model": "devices.parameter",
+    "pk": 13,
+    "fields": {
+        "code": 181,
+        "name": "GNSS PDOP",
+        "bytes": 2,
+        "type": "Unsigned",
+        "min_value": 0,
+        "max_value": 500,
+        "multiplier": "0.100",
+        "units": null,
+        "description": "Permanent I/O Elements",
+        "hw_support": "FMBXXX FMB001\r\nFMB010\r\nFMB110\r\nFMB120\r\nFMB122\r\nFMB125\r\nFMU125\r\nFMB140\r\nFMB900\r\nFMB920\r\nFMB962\r\nFMB964\r\nFM3001\r\nFMB202\r\nFMB204\r\nFMB206\r\nFMT100\r\nMTB100",
+        "group": "Permanent I/O Elements"
+    }
+},
+{
+    "model": "devices.parameter",
+    "pk": 14,
+    "fields": {
+        "code": 182,
+        "name": "GNSS HDOP",
+        "bytes": 2,
+        "type": "Unsigned",
+        "min_value": 0,
+        "max_value": 500,
+        "multiplier": "0.100",
+        "units": null,
+        "description": "Coefficient, calculation formula",
+        "hw_support": "\"FMBXXX FMB001\r\nFMB010\r\nFMB110\r\nFMB120\r\nFMB122\r\nFMB125\r\nFMU125\r\nFMB140\r\nFMB900\r\nFMB920\r\nFMB962\r\nFMB964\r\nFM3001\r\nFMB202\r\nFMB204\r\nFMB206\r\nFMT100\r\nMTB100\"",
+        "group": "Permanent I/O Elements"
+    }
+},
+{
+    "model": "devices.parameter",
+    "pk": 15,
+    "fields": {
+        "code": 200,
+        "name": "Режим сну",
+        "bytes": 1,
+        "type": "Unsigned",
+        "min_value": 0,
+        "max_value": 4,
+        "multiplier": null,
+        "units": null,
+        "description": "0 - No Sleep\r\n1 – GPS Sleep\r\n2 – Deep Sleep\r\n3 – Online Sleep\r\n4 - Ultra Sleep",
+        "hw_support": "FMBXXX FMB001\r\nFMB010\r\nFMB110\r\nFMB120\r\nFMB122\r\nFMB125\r\nFMU125\r\nFMB140\r\nFMB900\r\nFMB920\r\nFMB962\r\nFMB964\r\nFM3001\r\nFMB202\r\nFMB204\r\nFMB206\r\nFMT100\r\nMTB100",
+        "group": "Permanent I/O Elements"
+    }
+},
+{
+    "model": "devices.parameter",
+    "pk": 16,
+    "fields": {
+        "code": 239,
+        "name": "Запалювання",
+        "bytes": 1,
+        "type": "Unsigned",
+        "min_value": 0,
+        "max_value": 1,
+        "multiplier": null,
+        "units": null,
+        "description": "0 – Ignition Off\r\n1 – Ignition On",
+        "hw_support": "FMBXXX FMB001\r\nFMB010\r\nFMB002\r\nFMB020\r\nFMB003\r\nFMB110\r\nFMB120\r\nFMB122\r\nFMB125\r\nFMB130\r\nFMB140\r\nFMU125\r\nFMB900\r\nFMB920\r\nFMB962\r\nFMB964\r\nFM3001\r\nFMB202\r\nFMB204\r\nFMB206\r\nFMT100\r\nMTB100\r\nFMP100\r\nMSP500",
+        "group": "Permanent I/O Elements"
+    }
+},
+{
+    "model": "devices.parameter",
+    "pk": 17,
+    "fields": {
+        "code": 240,
+        "name": "Рух",
+        "bytes": 1,
+        "type": "Unsigned",
+        "min_value": 0,
+        "max_value": 1,
+        "multiplier": null,
+        "units": null,
+        "description": "0 – Movement Off\r\n1 – Movement On",
+        "hw_support": "FMBXXX FMB001\r\nFMB010\r\nFMB002\r\nFMB020\r\nFMB003\r\nFMB110\r\nFMB120\r\nFMB122\r\nFMB125\r\nFMB130\r\nFMB140\r\nFMU125\r\nFMB900\r\nFMB920\r\nFMB962\r\nFMB964\r\nFM3001\r\nFMB202\r\nFMB204\r\nFMB206\r\nFMT100\r\nMTB100\r\nFMP100\r\nMSP500",
+        "group": "Permanent I/O elements"
+    }
+},
+{
+    "model": "devices.parameter",
+    "pk": 18,
+    "fields": {
+        "code": 241,
+        "name": "Активний оператор GSM",
+        "bytes": 4,
+        "type": "Unsigned",
+        "min_value": 0,
+        "max_value": 2147483647,
+        "multiplier": null,
+        "units": null,
+        "description": "В даний час використовується код оператора GSM",
+        "hw_support": "FMBXXX FMB001\r\nFMB010\r\nFMB110\r\nFMB120\r\nFMB122\r\nFMB125\r\nFMU125\r\nFMB140\r\nFMB900\r\nFMB920\r\nFMB962\r\nFMB964\r\nFM3001\r\nFMB202\r\nFMB204\r\nFMB206\r\nFMT100\r\nMTB100",
+        "group": "Permanent I/O elements"
+    }
+}
+]

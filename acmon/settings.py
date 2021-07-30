@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'apps.tracking',
     'apps.car',
     'apps.messaging',
+    'apps.devices',
 ]
 
 MIDDLEWARE = [
