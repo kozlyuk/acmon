@@ -33,6 +33,7 @@ class RecordViewSet(viewsets.ModelViewSet):
             datetime.now().replace(hour=0, minute=0, second=0, microsecond=0))
         end_time = self.request.query_params.get('end_time', datetime.now())
         order = self.request.GET.get('order')
+        events = self.request.GET.get('events')
         # filtering queryset
         if car_ids:
             qs_union = models.Record.objects.none()
@@ -42,6 +43,10 @@ class RecordViewSet(viewsets.ModelViewSet):
             queryset = qs_union
         queryset = queryset.filter(timestamp__gte=start_time,
                                    timestamp__lte=end_time)
+        if events in ['1', 'true']:
+            queryset = queryset.exclude(event_id=0)
+        else:
+            queryset = queryset.filter(event_id=0)
         # ordering queryset
         if order:
             queryset = queryset.order_by(order)
