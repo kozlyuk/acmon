@@ -19,6 +19,7 @@ class RecordAdmin(admin.ModelAdmin):
         "latitude",
         "longitude",
         "is_parked",
+        "distance_from_home"
     ]
     list_filter = ('car__number', 'is_parked', 'event_id', 'priority',)
     ordering = ['-timestamp']

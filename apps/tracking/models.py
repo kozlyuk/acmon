@@ -1,7 +1,8 @@
+from django.conf import settings
 from django.db import models
 from django.core.validators import MaxValueValidator
 from django.utils.translation import ugettext_lazy as _
-from django.conf import settings
+from apps.tracking.geotools import get_distance_from_home
 
 from acmon.uuid_models import UUIDModel
 
@@ -33,8 +34,8 @@ class Record(UUIDModel):
     # Fields
     timestamp = models.DateTimeField('Timestamp')
     priority = models.PositiveIntegerField('Priority', default=0, validators=[MaxValueValidator(2)])
-    longitude = models.PositiveIntegerField('Longitude', validators=[MaxValueValidator(900000000)])
     latitude = models.PositiveIntegerField('Latitude', validators=[MaxValueValidator(900000000)])
+    longitude = models.PositiveIntegerField('Longitude', validators=[MaxValueValidator(900000000)])
     altitude = models.PositiveSmallIntegerField('Altitude')
     angle = models.PositiveSmallIntegerField('Angle', default=0, validators=[MaxValueValidator(360)])
     satellites = models.PositiveSmallIntegerField('Satelites', default=0)
@@ -57,3 +58,10 @@ class Record(UUIDModel):
         if not is_ignition_on and not is_movement:
             self.is_parked = True
             self.save()
+
+    def get_location(self):
+        return (self.latitude / 10000000, self.longitude / 10000000)
+
+    def distance_from_home(self):
+        return int(get_distance_from_home(self.get_location()))
+    distance_from_home.short_description = "Distance from home, km"

@@ -27,6 +27,7 @@ sqlparse==0.4.1
 urllib3==1.26.5
 celery==5.1.2
 pyotp==2.6.0
+geopy==2.2.0
 
 # Deployment
 gunicorn==20.1.0
