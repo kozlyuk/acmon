@@ -78,6 +78,7 @@ class Car(UUIDModel):
     sim_number = models.CharField(_('Tracker sim number'), max_length=13)
     number = models.CharField(_('Car number'), max_length=8)
     color = ColorField(_('Car color'), default='#FF0000')
+    track_color = ColorField(_('Route color'), default='#0000FF')
     is_active = models.BooleanField(_('Is active'), default=True)
 
     class Meta:

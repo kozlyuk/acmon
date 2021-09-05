@@ -16,11 +16,12 @@ class RecordAdmin(admin.ModelAdmin):
         "timestamp",
         "car",
         "event_id",
-        "longitude",
         "latitude",
+        "longitude",
         "is_parked",
     ]
     list_filter = ('car__number', 'is_parked', 'event_id', 'priority',)
+    ordering = ['-timestamp']
 
 
 admin.site.register(models.Trip, TripAdmin)

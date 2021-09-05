@@ -32,6 +32,7 @@ class CarSerializer(DynamicFieldsMixin, serializers.ModelSerializer):
             "sim_number",
             "number",
             "color",
+            "track_color",
             "is_active",
             "updated_at",
             "created_at",
