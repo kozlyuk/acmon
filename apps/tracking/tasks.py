@@ -17,7 +17,7 @@ def create_trip(car, first_record, last_record, is_active_trip):
         if is_active_trip:
             try:
                 last_trip = Trip.objects.filter(car=car).latest()
-                last_trip.name =  f'{first_record.car.number} - {first_record.timestamp} - {last_record.timestamp}'
+                last_trip.name =  f'{first_record.car.number} {last_trip.start_time} - {last_record.timestamp}'
                 last_trip.distance += trip_distance
                 last_trip.finish_time = last_record.timestamp
                 last_trip.save()
@@ -26,7 +26,7 @@ def create_trip(car, first_record, last_record, is_active_trip):
                 logger.warning("Previous trip does not exist")
                 print("Previous trip does not exist")
         else:
-            trip = Trip.objects.create(name = f'{first_record.car.number} - {first_record.timestamp} - {last_record.timestamp}',
+            trip = Trip.objects.create(name = f'{first_record.car.number} {first_record.timestamp} - {last_record.timestamp}',
                                        car=car,
                                        start_time=first_record.timestamp,
                                        finish_time=last_record.timestamp,

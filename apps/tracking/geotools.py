@@ -10,4 +10,4 @@ def get_track_distance(record1, record2):
     odo1 = record1.io_elements.get('16')
     odo2 = record2.io_elements.get('16')
     if odo1 and odo2:
-        return abs(odo2 - odo1)
+        return round(abs(odo2 - odo1) / 1000, 1)
