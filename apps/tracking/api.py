@@ -12,6 +12,34 @@ class TripViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.TripSerializer
     permission_classes = [permissions.IsAuthenticated]
 
+    def get_queryset(self):
+        # get filtered payments
+        queryset = models.Trip.objects.all()
+        # get parameters from request
+        car_ids = self.request.GET.getlist('car_id')
+        from_date = self.request.query_params.get('from_date')
+        end_date = self.request.query_params.get('end_date')
+        order = self.request.GET.get('order')
+        # filtering queryset
+        if car_ids:
+            qs_union = models.Trip.objects.none()
+            for car in car_ids:
+                qs_segment = queryset.filter(car=car)
+                qs_union = qs_union | qs_segment
+            queryset = qs_union
+        if from_date:
+            queryset = queryset.filter(start_time__gte=from_date)
+        if end_date:
+            queryset = queryset.filter(start_time__lte=end_date)
+
+        # ordering queryset
+        if order:
+            queryset = queryset.order_by(order)
+        else:
+            queryset = queryset.order_by('-start_time')
+
+        return queryset
+
 
 class RecordViewSet(viewsets.ModelViewSet):
     """ViewSet for the Record class

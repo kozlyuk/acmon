@@ -10,6 +10,7 @@ class TripAdmin(admin.ModelAdmin):
         "start_time",
         "finish_time",
     ]
+    ordering = ['-start_time']
 
 
 class RecordAdmin(admin.ModelAdmin):
