@@ -2,15 +2,7 @@ from geopy import distance
 from django.conf import settings
 
 
-def get_home_location():
-    return (settings.BASE_LATITUDE, settings.BASE_LONGITUDE)
-
-
-def get_distance_from_home(location):
-    return distance.geodesic(get_home_location(), location).km
-
-
-def get_distance_between_records(location1, location2):
+def get_distance_between_points(location1, location2):
     return distance.geodesic(location1, location2).km
 
 

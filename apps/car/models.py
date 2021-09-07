@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from django.core.validators import MaxValueValidator
 from colorfield.fields import ColorField
 
 from acmon.uuid_models import UUIDModel
@@ -28,6 +29,10 @@ class Department(UUIDModel):
 
     # Fields
     name = models.CharField(max_length=45)
+    base_latitude = models.PositiveIntegerField('Base latitude', default=0, validators=[MaxValueValidator(900000000)])
+    base_longitude = models.PositiveIntegerField('Base longitude', default=0, validators=[MaxValueValidator(900000000)])
+    insignificant_distance = models.FloatField('Insignificant distance', default=10)
+    around_distance = models.FloatField('Around distance', default=0.1)
 
     class Meta:
         verbose_name = _('Department')

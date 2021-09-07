@@ -11,10 +11,12 @@ class TripSerializer(DynamicFieldsMixin, serializers.ModelSerializer):
         model = models.Trip
         fields = [
             "id",
+            "name",
             "car",
             "driver",
+            "distance",
             "start_time",
-            "finsh_time",
+            "finish_time",
             "updated_at",
             "created_at",
         ]

@@ -6,8 +6,9 @@ from . import models
 
 class TripAdmin(admin.ModelAdmin):
     list_display = [
-        "car",
+        "name",
         "start_time",
+        "finish_time",
     ]
 
 
