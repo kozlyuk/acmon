@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'apps.car',
     'apps.messaging',
     'apps.devices',
+    'django_celery_beat',
+    'django_celery_results',
 ]
 
 MIDDLEWARE = [
@@ -243,8 +245,10 @@ SMS_TOKEN = os.environ.get("SMS_TOKEN")
 SMS_SENDER = os.environ.get("SMS_SENDER")
 OTP_SECRET = os.environ.get("OTP_SECRET")
 
-# Home location
-BASE_LATITUDE=int(os.environ.get("BASE_LATITUDE", '506258883')) / 10000000
-BASE_LONGITUDE=int(os.environ.get("BASE_LONGITUDE", '262630600')) / 10000000
-INSIGNIFICANT_DISTANCE=os.environ.get("INSIGNIFICANT_DISTANCE", '10')
-AROUND_DISTANCE=os.environ.get("AROUND_DISTANCE", '0.1')
+# REDIS and CELERY related settings
+CELERY_BROKER_URL = os.environ.get("REDIS_SERVER")
+CELERY_RESULT_BACKEND = "django-db"
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = TIME_ZONE

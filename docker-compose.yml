@@ -69,36 +69,22 @@ services:
 # CELERY #
 ##########
 
-#   celery:
-#     image: *img
-#     container_name: r3sourcer_celery
-#     command: celery worker -n worker.celery -E -A r3sourcer -l info --scheduler=redbeat.RedBeatScheduler -Q celery,sms,hr
-#     depends_on:
-#       - redis
-#       - clickhouse
-#       - rabbitmq
-#     env_file:
-#       - ./.env_defaults
-#       - ./.env
-#     networks:
-#       r3-network:
-#         ipv4_address: 192.168.100.7
+  # celery:
+  #   image: *img
+  #   container_name: acmon_celery
+  #   command: celery -A acmon worker -l info
+  #   env_file:
+  #     - .env
+  #   network_mode: host
 
 ###############
 # CELERY BEAT #
 ###############
 
-#   celery-beat:
-#     image: *img
-#     container_name: r3sourcer_celery_beat
-#     command: celery beat -A r3sourcer -l info --scheduler=redbeat.RedBeatScheduler
-#     depends_on:
-#       - redis
-#       - clickhouse
-#       - rabbitmq
-#     env_file:
-#       - ./.env_defaults
-#       - ./.env
-#     networks:
-#       r3-network:
-#         ipv4_address: 192.168.100.8
+  celery-beat:
+    image: *img
+    container_name: acmon_celery_beat
+    command: celery -A acmon worker --beat -l info -S django
+    env_file:
+      - .env
+    network_mode: host

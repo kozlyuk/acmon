@@ -6,7 +6,12 @@ from . import models
 
 
 class TripViewSet(viewsets.ModelViewSet):
-    """ViewSet for the Trip class"""
+    """ViewSet for the Trip class
+    Filter queryset by car_id field ('car_id' get parameters list)
+    Filter queryset by from_date field ('from_date' get parameter)
+    Filter queryset by end_date field ('end_date' get parameter)
+    Order queryset by any given field ('order' get parameter)
+    """
 
     queryset = models.Trip.objects.all()
     serializer_class = serializers.TripSerializer
