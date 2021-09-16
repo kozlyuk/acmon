@@ -16,12 +16,12 @@ class TripSerializer(DynamicFieldsMixin, serializers.ModelSerializer):
             "name",
             "car",
             # "driver",
-            "distance",
             "start_time",
             "finish_time",
+            "distance",
             "trip_time",
-            "updated_at",
-            "created_at",
+            "avg_speed",
+            "max_speed",
         ]
 
     def get_trip_time(self, obj):
