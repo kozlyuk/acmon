@@ -7,26 +7,32 @@ from apps.devices.models import Parameter
 
 class TripSerializer(DynamicFieldsMixin, serializers.ModelSerializer):
 
+    trip_time = serializers.SerializerMethodField()
+
     class Meta:
         model = models.Trip
         fields = [
             "id",
             "name",
             "car",
-            "driver",
+            # "driver",
             "distance",
             "start_time",
             "finish_time",
+            "trip_time",
             "updated_at",
             "created_at",
         ]
+
+    def get_trip_time(self, obj):
+
+        return obj.trip_time()
 
 
 class RecordSerializer(DynamicFieldsMixin, serializers.ModelSerializer):
 
     io_elements = serializers.SerializerMethodField()
     event = serializers.SerializerMethodField()
-
 
     class Meta:
         model = models.Record
@@ -42,8 +48,6 @@ class RecordSerializer(DynamicFieldsMixin, serializers.ModelSerializer):
             "satellites",
             "speed",
             "event",
-            "updated_at",
-            "created_at",
             "io_elements",
             "is_parked",
         ]
