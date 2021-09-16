@@ -252,3 +252,8 @@ CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = TIME_ZONE
+
+# Home location
+BASE_LATITUDE = os.environ.get("BASE_LATITUDE")
+BASE_LONGITUDE = os.environ.get("BASE_LONGITUDE")
+BASE_ADDRESS = os.environ.get("BASE_ADDRESS")

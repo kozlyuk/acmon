@@ -81,7 +81,7 @@ services:
 # CELERY BEAT #
 ###############
 
-  celery-beat:
+  celery_beat:
     image: *img
     container_name: acmon_celery_beat
     command: celery -A acmon worker --beat -l info -S django

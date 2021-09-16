@@ -52,21 +52,17 @@ def create_trips(for_date=None):
         for record in Record.objects.filter(car=car,
                                             timestamp__year=for_date.year,
                                             timestamp__month=for_date.month,
-                                            timestamp__day=for_date.day,
-                                            is_parked=False) \
+                                            timestamp__day=for_date.day
+                                            ) \
                                     .order_by('timestamp'):
 
             # check if trip in progress
-            if first_record:
+            if first_record and not record.is_parked:
                 if not record.in_insignificant_distance():
                     is_active_trip = True
                     trip_started = True
                     first_record_obj = record
                 first_record = False
-                continue
-
-            # skip if car in home location
-            if not trip_started and record.in_insignificant_distance():
                 continue
 
             # check if trip in progress
@@ -78,7 +74,7 @@ def create_trips(for_date=None):
             last_record_obj = record
 
             # check if trip is finished
-            if trip_started and record.in_insignificant_distance():
+            if trip_started and record.in_insignificant_distance() and record.is_parked:
                 trip_started = False
                 create_trip(car, first_record_obj, last_record_obj, is_active_trip)
 
