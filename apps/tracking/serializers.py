@@ -25,6 +25,8 @@ class TripSerializer(DynamicFieldsMixin, serializers.ModelSerializer):
 class RecordSerializer(DynamicFieldsMixin, serializers.ModelSerializer):
 
     io_elements = serializers.SerializerMethodField()
+    event = serializers.SerializerMethodField()
+
 
     class Meta:
         model = models.Record
@@ -39,9 +41,9 @@ class RecordSerializer(DynamicFieldsMixin, serializers.ModelSerializer):
             "angle",
             "satellites",
             "speed",
+            "event",
             "updated_at",
             "created_at",
-            "event_id",
             "io_elements",
             "is_parked",
         ]
@@ -58,7 +60,22 @@ class RecordSerializer(DynamicFieldsMixin, serializers.ModelSerializer):
                     value = obj.io_elements[(str(parameter['code']))]
                 params.append({'code': parameter['code'],
                                'name': parameter['name'],
-                               'units': parameter['units'],
-                               'value': value
+                               'value': value,
+                               'units': parameter['units']
                                })
         return params
+
+    def get_event(self, obj):
+
+        if obj.event_id:
+            parameter = Parameter.objects.get(code=obj.event_id)
+            if parameter.multiplier:
+                value = obj.io_elements[(str(parameter.code))] * parameter.multiplier
+            else:
+                value = obj.io_elements[(str(parameter.code))]
+
+            return {'code': parameter.code,
+                    'name': parameter.name,
+                    'value': value,
+                    'units': parameter.units
+                    }
