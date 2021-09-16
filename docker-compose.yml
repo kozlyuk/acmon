@@ -65,17 +65,6 @@ services:
     depends_on:
       - acmon_back
 
-##########
-# CELERY #
-##########
-
-  # celery:
-  #   image: *img
-  #   container_name: acmon_celery
-  #   command: celery -A acmon worker -l info
-  #   env_file:
-  #     - .env
-  #   network_mode: host
 
 ###############
 # CELERY BEAT #

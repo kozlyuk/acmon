@@ -19,6 +19,8 @@ class Trip(UUIDModel):
     distance = models.FloatField('Distance')
     start_time = models.DateTimeField(_('Start time'))
     finish_time = models.DateTimeField(_('Finish time'))
+    avg_speed = models.PositiveSmallIntegerField('Average speed')
+    max_speed = models.PositiveSmallIntegerField('Maximum speed')
 
     class Meta:
         verbose_name = _('Trip')
@@ -27,6 +29,12 @@ class Trip(UUIDModel):
 
     def __str__(self):
         return self.name
+
+    def trip_time(self):
+        duration = self.finish_time - self.start_time
+        total_seconds = int(duration.total_seconds())
+
+        return f"{total_seconds // 3600}:{(total_seconds % 3600) // 60}"
 
 
 class Record(UUIDModel):

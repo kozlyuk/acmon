@@ -7,11 +7,15 @@ from . import models
 class TripAdmin(admin.ModelAdmin):
     list_display = [
         "name",
-        "distance",
         "start_time",
         "finish_time",
+        "distance",
+        "avg_speed",
+        "max_speed",
+        "trip_time",
     ]
     ordering = ['-start_time']
+    date_hierarchy = 'start_time'
 
 
 class RecordAdmin(admin.ModelAdmin):

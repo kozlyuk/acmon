@@ -1,5 +1,6 @@
 
 from datetime import date, timedelta
+from django.db.models import Max, Avg
 from celery.utils.log import get_task_logger
 
 from acmon.celery import app
@@ -13,24 +14,39 @@ logger = get_task_logger(__name__)
 def create_trip(car, first_record, last_record, is_active_trip):
     """Create trip from records"""
     trip_distance = get_track_distance(first_record, last_record)
+    trip_records = Record.objects.filter(car=car,
+                                         timestamp__lte=last_record.timestamp
+                                         )
+    max_speed = trip_records.aggregate(Max('speed'))['speed__max']
+
     if trip_distance > last_record.car.department.insignificant_distance:
         if is_active_trip:
             try:
                 last_trip = Trip.objects.filter(car=car).latest()
+                trip_records = trip_records.filter(timestamp__gte=last_trip.start_time)
+                avg_speed = round(trip_records.aggregate(Avg('speed'))['speed__avg'])
+
                 last_trip.name =  f'{first_record.car.number} {last_trip.start_time} - {last_record.timestamp}'
                 last_trip.distance += trip_distance
                 last_trip.finish_time = last_record.timestamp
+                last_trip.avg_speed = avg_speed
+                last_trip.max_speed = max(last_trip.max_speed, max_speed)
                 last_trip.save()
                 logger.info("Updated trip %s", last_trip)
             except:
                 logger.warning("Previous trip does not exist")
                 print("Previous trip does not exist")
         else:
+            trip_records = trip_records.filter(timestamp__gte=first_record.timestamp)
+            avg_speed = round(trip_records.aggregate(Avg('speed'))['speed__avg'])
+
             trip = Trip.objects.create(name = f'{first_record.car.number} {first_record.timestamp} - {last_record.timestamp}',
                                        car=car,
                                        start_time=first_record.timestamp,
                                        finish_time=last_record.timestamp,
-                                       distance = trip_distance
+                                       distance = trip_distance,
+                                       avg_speed = avg_speed,
+                                       max_speed = max_speed,
                                        )
             logger.info("Created trip %s", trip)
 
