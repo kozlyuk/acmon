@@ -17,7 +17,6 @@ def create_trip(car, first_record, last_record, is_active_trip):
     trip_records = Record.objects.filter(car=car,
                                          timestamp__lte=last_record.timestamp
                                          )
-    max_speed = trip_records.aggregate(Max('speed'))['speed__max']
 
     if trip_distance > last_record.car.department.insignificant_distance:
         if is_active_trip:
@@ -25,6 +24,7 @@ def create_trip(car, first_record, last_record, is_active_trip):
                 last_trip = Trip.objects.filter(car=car).latest()
                 trip_records = trip_records.filter(timestamp__gte=last_trip.start_time)
                 avg_speed = round(trip_records.aggregate(Avg('speed'))['speed__avg'])
+                max_speed = trip_records.aggregate(Max('speed'))['speed__max']
 
                 last_trip.name =  f'{first_record.car.number} {last_trip.start_time} - {last_record.timestamp}'
                 last_trip.distance += trip_distance
@@ -39,6 +39,7 @@ def create_trip(car, first_record, last_record, is_active_trip):
         else:
             trip_records = trip_records.filter(timestamp__gte=first_record.timestamp)
             avg_speed = round(trip_records.aggregate(Avg('speed'))['speed__avg'])
+            max_speed = trip_records.aggregate(Max('speed'))['speed__max']
 
             trip = Trip.objects.create(name = f'{first_record.car.number} {first_record.timestamp} - {last_record.timestamp}',
                                        car=car,
