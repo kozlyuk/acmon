@@ -1,5 +1,6 @@
 *.pyc
 venv/
+media/
 db.sqlite3
 .env
 .env_front

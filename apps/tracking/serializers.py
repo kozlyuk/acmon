@@ -22,6 +22,7 @@ class TripSerializer(DynamicFieldsMixin, serializers.ModelSerializer):
             "trip_time",
             "avg_speed",
             "max_speed",
+            'json_file',
         ]
 
     def get_trip_time(self, obj):
@@ -83,3 +84,16 @@ class RecordSerializer(DynamicFieldsMixin, serializers.ModelSerializer):
                     'value': value,
                     'units': parameter.units
                     }
+
+class TripFileSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = models.Record
+        fields = [
+            "id",
+            "timestamp",
+            "longitude",
+            "latitude",
+            "speed",
+            "is_parked",
+        ]

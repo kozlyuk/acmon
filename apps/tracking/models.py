@@ -1,3 +1,4 @@
+from datetime import date
 from django.conf import settings
 from django.db import models
 from django.core.validators import MaxValueValidator
@@ -5,6 +6,13 @@ from django.utils.translation import ugettext_lazy as _
 from apps.tracking.geotools import get_distance_between_points
 
 from acmon.uuid_models import UUIDModel
+
+
+def car_directory_path(instance, filename):
+    # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
+    return '{0}/{1}/{2}'.format(instance.car.number,
+                                f'{date.today().year}-{date.today().month}',
+                                filename)
 
 
 class Trip(UUIDModel):
@@ -21,6 +29,7 @@ class Trip(UUIDModel):
     finish_time = models.DateTimeField(_('Finish time'))
     avg_speed = models.PositiveSmallIntegerField('Average speed')
     max_speed = models.PositiveSmallIntegerField('Maximum speed')
+    json_file = models.FileField('JSON file', upload_to=car_directory_path, blank=True, null=True)
 
     class Meta:
         verbose_name = _('Trip')

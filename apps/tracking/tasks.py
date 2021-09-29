@@ -1,15 +1,34 @@
 
 from datetime import date, timedelta
 from django.db.models import Max, Avg
-from celery.utils.log import get_task_logger
+from django.core.files.base import ContentFile
 
+import json
+import gzip
+
+from celery.utils.log import get_task_logger
 from acmon.celery import app
 
 from apps.car.models import Car
 from apps.tracking.models import Record, Trip
+from apps.tracking.serializers import TripFileSerializer
 from .geotools import get_track_distance
 
+
+
 logger = get_task_logger(__name__)
+
+
+def create_json_file(trip, trip_records):
+    """ create trip json file and compress it """
+
+    trip_serializer = TripFileSerializer(trip_records, many=True)
+    trip_data = bytes(json.dumps(trip_serializer.data), 'utf-8')
+    gziped_data = gzip.compress(trip_data)
+
+    file_name = trip.name + '.json.gz'
+    trip.json_file.save(file_name, ContentFile(gziped_data))
+
 
 def create_trip(car, first_record, last_record, is_active_trip):
     """Create trip from records"""
@@ -25,13 +44,15 @@ def create_trip(car, first_record, last_record, is_active_trip):
                 trip_records = trip_records.filter(timestamp__gte=last_trip.start_time)
                 avg_speed = round(trip_records.aggregate(Avg('speed'))['speed__avg'])
                 max_speed = trip_records.aggregate(Max('speed'))['speed__max']
+                trip_name = f'{first_record.car.number} {last_trip.start_time} - {last_record.timestamp}'
 
-                last_trip.name =  f'{first_record.car.number} {last_trip.start_time} - {last_record.timestamp}'
+                last_trip.name = trip_name
                 last_trip.distance += trip_distance
                 last_trip.finish_time = last_record.timestamp
                 last_trip.avg_speed = avg_speed
                 last_trip.max_speed = max(last_trip.max_speed, max_speed)
                 last_trip.save()
+                create_json_file(last_trip, trip_records)
                 logger.info("Updated trip %s", last_trip)
             except:
                 logger.warning("Previous trip does not exist")
@@ -40,8 +61,9 @@ def create_trip(car, first_record, last_record, is_active_trip):
             trip_records = trip_records.filter(timestamp__gte=first_record.timestamp)
             avg_speed = round(trip_records.aggregate(Avg('speed'))['speed__avg'])
             max_speed = trip_records.aggregate(Max('speed'))['speed__max']
+            trip_name = f'{first_record.car.number} {first_record.timestamp} - {last_record.timestamp}'
 
-            trip = Trip.objects.create(name = f'{first_record.car.number} {first_record.timestamp} - {last_record.timestamp}',
+            trip = Trip.objects.create(name = trip_name,
                                        car=car,
                                        start_time=first_record.timestamp,
                                        finish_time=last_record.timestamp,
@@ -49,6 +71,7 @@ def create_trip(car, first_record, last_record, is_active_trip):
                                        avg_speed = avg_speed,
                                        max_speed = max_speed,
                                        )
+            create_json_file(trip, trip_records)
             logger.info("Created trip %s", trip)
 
 
