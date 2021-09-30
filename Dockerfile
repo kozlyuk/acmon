@@ -53,14 +53,13 @@ RUN pip wheel --no-cache-dir --no-deps --wheel-dir /usr/src/app/wheels -r requir
 FROM python:3.8-alpine
 
 # create directory for the app user
-RUN mkdir -p /home/app
+RUN mkdir -p /home/acmon
 
 # create the app user
-RUN addgroup -S app && adduser -S app -G app
+RUN addgroup -S acmon && adduser -S acmon -G acmon
 
 # create the appropriate directories
-ENV HOME=/home/app
-ENV APP_HOME=/home/app
+ENV APP_HOME=/home/acmon
 RUN mkdir $APP_HOME/static
 RUN mkdir $APP_HOME/media
 WORKDIR $APP_HOME
@@ -79,7 +78,7 @@ COPY ./entrypoint.sh $APP_HOME
 COPY . $APP_HOME
 
 # chown all the files to the app user
-RUN chown -R app:app $APP_HOME
+RUN chown -R acmon:acmon $APP_HOME
 
 # change to the app user
-USER app
+USER acmon
