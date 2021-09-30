@@ -32,7 +32,7 @@ services:
       - .env
     volumes:
       - ./media:/home/acmon/media
-    entrypoint: ['/home/app/entrypoint.sh']
+    entrypoint: ['/home/acmon/entrypoint.sh']
 
 ##############
 # IOT SERVER #

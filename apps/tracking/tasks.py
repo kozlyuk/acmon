@@ -7,6 +7,7 @@ import json
 import gzip
 
 from celery.utils.log import get_task_logger
+from django.db.models.expressions import OrderBy
 from acmon.celery import app
 
 from apps.car.models import Car
@@ -35,7 +36,8 @@ def create_trip(car, first_record, last_record, is_active_trip):
     trip_distance = get_track_distance(first_record, last_record)
     trip_records = Record.objects.filter(car=car,
                                          timestamp__lte=last_record.timestamp
-                                         )
+                                         ) \
+                                 .order_by('timestamp')
 
     if trip_distance > last_record.car.department.insignificant_distance:
         if is_active_trip:
