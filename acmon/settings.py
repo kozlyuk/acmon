@@ -8,6 +8,12 @@ https://docs.djangoproject.com/
 
 import os
 
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+from sentry_sdk.integrations.celery import CeleryIntegration
+from sentry_sdk.integrations.redis import RedisIntegration
+
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -258,3 +264,20 @@ CELERY_TIMEZONE = TIME_ZONE
 BASE_LATITUDE = os.environ.get("BASE_LATITUDE")
 BASE_LONGITUDE = os.environ.get("BASE_LONGITUDE")
 BASE_ADDRESS = os.environ.get("BASE_ADDRESS")
+
+# Sentry settings
+if not DEBUG:
+    SENTRY_DSN = os.environ.get("SENTRY_DSN")
+    sentry_sdk.init(
+        dsn=SENTRY_DSN,
+        integrations=[DjangoIntegration(), CeleryIntegration(), RedisIntegration()],
+
+        # Set traces_sample_rate to 1.0 to capture 100%
+        # of transactions for performance monitoring.
+        # We recommend adjusting this value in production.
+        traces_sample_rate=0,
+
+        # If you wish to associate users to errors (assuming you are using
+        # django.contrib.auth) you may enable sending PII data.
+        send_default_pii=True
+    )

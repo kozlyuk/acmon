@@ -34,3 +34,4 @@ geopy==2.2.0
 
 # Deployment
 gunicorn==20.1.0
+sentry-sdk
