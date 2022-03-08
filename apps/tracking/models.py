@@ -1,4 +1,3 @@
-from datetime import date
 from django.conf import settings
 from django.db import models
 from django.core.validators import MaxValueValidator
@@ -9,9 +8,9 @@ from acmon.uuid_models import UUIDModel
 
 
 def car_directory_path(instance, filename):
-    # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
+    # file will be uploaded to MEDIA_ROOT/car.number/year-month/<filename>
     return '{0}/{1}/{2}'.format(instance.car.number,
-                                f'{date.today().year}-{date.today().month}',
+                                f'{instance.start_time.year}-{instance.start_time.month}',
                                 filename)
 
 
