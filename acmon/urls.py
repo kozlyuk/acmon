@@ -17,18 +17,17 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include, re_path
-from django.views.generic import TemplateView
 from apps.accounts.views import exchange_token
 
 urlpatterns = [
-    path('', TemplateView.as_view(template_name='index.html'), name='index'),
-    path('accounts/', include('apps.accounts.urls')),
-    path('tracking/', include('apps.tracking.urls')),
-    path('car/', include('apps.car.urls')),
+    path('api/accounts/', include('apps.accounts.urls')),
+    path('api/tracking/', include('apps.tracking.urls')),
+    path('api/car/', include('apps.car.urls')),
     path('admin/', admin.site.urls),
 
-    path('rest-auth/', include('rest_auth.urls')),
-    re_path(r'social/(?P<backend>[^/]+)/$', exchange_token),
+    path('api/rest-auth/', include('rest_auth.urls')),
+    re_path(r'api/social/(?P<backend>[^/]+)/$', exchange_token),
 ]
 
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

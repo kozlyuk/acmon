@@ -9,5 +9,5 @@ router.register("trip", api.TripViewSet, basename='Trip')
 router.register("record", api.RecordViewSet, basename='Record')
 
 urlpatterns = (
-    path("api/", include(router.urls)),
+    path("", include(router.urls)),
 )

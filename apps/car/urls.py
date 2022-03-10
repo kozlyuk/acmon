@@ -12,5 +12,5 @@ router.register("department", api.DepartmentViewSet)
 router.register("model", api.ModelViewSet)
 
 urlpatterns = (
-    path("api/", include(router.urls)),
+    path("", include(router.urls)),
 )
