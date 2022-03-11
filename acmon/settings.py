@@ -155,6 +155,8 @@ CORS_ORIGIN_WHITELIST = os.environ.get("CORS_ORIGIN_WHITELIST").split(" ")
 CORS_ALLOW_HEADERS = os.environ.get("CORS_ALLOW_HEADERS").split(" ")
 CORS_ALLOW_CREDENTIALS = False
 
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
