@@ -49,7 +49,7 @@ def create_trip(car, first_record, last_record, is_active_trip):
                 trip_name = f'{first_record.car.number} {last_trip.start_time} - {last_record.timestamp}'
 
                 last_trip.name = trip_name
-                last_trip.distance += trip_distance
+                last_trip.distance += round(last_trip.distance + trip_distance, 1)
                 last_trip.finish_time = last_record.timestamp
                 last_trip.avg_speed = avg_speed
                 last_trip.max_speed = max(last_trip.max_speed, max_speed)
@@ -69,7 +69,7 @@ def create_trip(car, first_record, last_record, is_active_trip):
                                        car=car,
                                        start_time=first_record.timestamp,
                                        finish_time=last_record.timestamp,
-                                       distance = trip_distance,
+                                       distance = round(trip_distance, 1),
                                        avg_speed = avg_speed,
                                        max_speed = max_speed,
                                        )

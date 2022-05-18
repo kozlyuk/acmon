@@ -13,7 +13,6 @@ class TripViewSet(viewsets.ModelViewSet):
     Order queryset by any given field ('order' get parameter)
     """
 
-    queryset = models.Trip.objects.all()
     serializer_class = serializers.TripSerializer
     permission_classes = [permissions.IsAuthenticated]
 
